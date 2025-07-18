@@ -23,8 +23,8 @@ const geistMono = Geist_Mono({
 
 function ParticlesBG() {
   const [particles, setParticles] = useState<any[]>([]);
-  const [frame, setFrame] = useState(0);
-  const requestRef = useRef<number>();
+  const [frame, setFrame] = useState<number>(0);
+  const requestRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const colors = [
@@ -171,16 +171,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <button onClick={() => { localStorage.clear(); window.location.href = '/'; }} aria-label="Recommencer le quiz" style={{ background: theme === 'light' ? '#030580FF' : '#fff', color: theme === 'light' ? '#fff' : '#030580FF', border: 'none', borderRadius: 8, padding: '8px 18px', fontWeight: 600, fontSize: 18, cursor: 'pointer', boxShadow: '0 2px 8px #0001', transition: 'all 0.2s' }}>↻ Recommencer</button>
         </nav>
         <div style={{ height: 64 }} />
-        <div style={{ position: 'fixed', bottom: 18, left: 18, zIndex: 2000, display: 'flex', gap: 12, alignItems: 'center', background: 'rgba(255,255,255,0.85)', borderRadius: 12, boxShadow: '0 2px 8px #0001', padding: '6px 14px' }}>
+        <div style={{ position: 'fixed', bottom: 45, left: 18, zIndex: 2000, display: 'flex', gap: 12, alignItems: 'center', background: '#030580FF', borderRadius: 12, boxShadow: '0 2px 8px #0001', padding: '6px 14px' }}>
           <button onClick={toggleTheme} aria-label={theme === 'light' ? 'Activer le mode sombre' : 'Activer le mode clair'} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 28, color: theme === 'light' ? '#030580FF' : '#fff', transition: 'color 0.2s' }}>
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
-          <select aria-label="Taille de police" value={fontSize} onChange={e => handleFontSize(e.target.value)} style={{ borderRadius: 8, border: '1px solid #030580FF', padding: '4px 8px', fontSize: 16, color: theme === 'light' ? '#030580FF' : '#fff', background: theme === 'light' ? '#fff' : '#181a2a' }}>
-            <option value="small">Petit</option>
-            <option value="normal">Normal</option>
-            <option value="large">Grand</option>
-            <option value="xlarge">Très grand</option>
-          </select>
+          
         </div>
         {children}
       </body>

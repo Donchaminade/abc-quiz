@@ -77,7 +77,7 @@ export default function ScorePage() {
       {showPopup && wonGift && (
         <>
           <Confetti width={typeof window !== 'undefined' ? window.innerWidth : 800} height={typeof window !== 'undefined' ? window.innerHeight : 600} numberOfPieces={250} recycle={false} />
-          <audio ref={winSoundRef} src="/sounds/good.mp3" preload="auto" />
+          <audio ref={winSoundRef} src="/abc-quiz/public/sounds/good.mp3" preload="auto" />
         </>
       )}
       {showPopup && (
