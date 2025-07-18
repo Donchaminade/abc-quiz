@@ -3,16 +3,25 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { QUESTIONS } from "../../data/questions";
 import { FiRefreshCw, FiHome } from "react-icons/fi";
+import type { Question } from "../../data/questions";
+
+// Définition du type Answer
+type Answer = {
+  questionId: number;
+  selected: string | null;
+  correct: boolean;
+  correctAnswer: string;
+};
 
 export default function SummaryPage() {
-  const [answers, setAnswers] = useState<any[]>([]);
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const router = useRouter();
 
   useEffect(() => {
     const ans = JSON.parse(localStorage.getItem("abc_quiz_answers") || "[]");
     setAnswers(ans);
-    const ids = ans.map((a: any) => a.questionId);
+    const ids = ans.map((a: Answer) => a.questionId);
     setQuestions(QUESTIONS.filter((q) => ids.includes(q.id)));
   }, []);
 

@@ -30,7 +30,7 @@ export default function QuizPage() {
   const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
-    const level = localStorage.getItem("abc_quiz_level") as any;
+    const level = localStorage.getItem("abc_quiz_level") as string;
     const count = parseInt(localStorage.getItem("abc_quiz_count") || "5");
     let filtered = QUESTIONS.filter((q) => q.difficulty === level);
     if (filtered.length < count) {

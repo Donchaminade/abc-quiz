@@ -11,9 +11,18 @@ const GIFT_THRESHOLDS = {
   difficile: { 5: 5, 10: 10, 15: 14, 20: 18 },
 };
 
+// Définition du type Answer
+
+type Answer = {
+  questionId: number;
+  selected: string | null;
+  correct: boolean;
+  correctAnswer: string;
+};
+
 export default function ScorePage() {
   const router = useRouter();
-  const [answers, setAnswers] = useState<any[]>([]);
+  const [answers, setAnswers] = useState<Answer[]>([]);
   const [level, setLevel] = useState<string>("");
   const [count, setCount] = useState<number>(5);
   const [showPopup, setShowPopup] = useState(false);
